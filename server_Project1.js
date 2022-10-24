@@ -54,11 +54,12 @@ app.post('/player1Name', (request, response) => {
  Player 2: Enter your name`)
 })
 
-// app.post('/player2Name', (req, res) => {
-//   player2Name = req.body.name;
-//   response.send(`Hello ${player2Name},\n\
-//   Player 1: What is your choice? Rock, Paper, or Scissors?`)
-//  })
+app.post('/player2Name', (request, response) => {
+  player2Name = request.body.name
+  response.send(
+    `Hello ${player2Name}, Player 1: What is your choice? Rock, Paper, or Scissors?`,
+  )
+})
 
 //  app.post('/player1Choice', (req, res) => {
 //   player1Choice = req.body.name;
