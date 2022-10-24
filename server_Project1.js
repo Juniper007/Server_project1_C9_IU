@@ -1,4 +1,4 @@
-import express, { response } from 'express'
+import express from 'express'
 import rl from 'readline-sync'
 
 const app = express()
@@ -14,8 +14,8 @@ let player1Score
 let player2Score
 
 function compare(player1Choice, player2Choice) {
-  player1Choice = player1Choice.toLowerCase()
-  player2Choice = player2Choice.toLowerCase()
+  player1Choice = player1Choice //.toLowerCase()
+  player2Choice = player2Choice //.toLowerCase()
   if (player1Choice === 'rock') {
     if (player2Choice === 'rock') {
       return 'Draw'
@@ -43,16 +43,16 @@ function compare(player1Choice, player2Choice) {
   }
 }
 
-app.get('/welcome', (req, res) =>
+app.get('/welcome', (req, res) => {
   res.send('Welcome to rock, paper, scissors!\n\
-Player 1: Enter your name'),
-)
+Player 1: Enter your name')
+})
 
-// app.post('/player1Name', (req, res) => {
-//  player1Name = req.body.name;
-//  response.send(`Hello ${player1Name},\n\
-//  Player 2: Enter your name`)
-// })
+app.post('/player1Name', (request, response) => {
+  player1Name = request.body.name
+  response.send(`Hello ${player1Name},\n\
+ Player 2: Enter your name`)
+})
 
 // app.post('/player2Name', (req, res) => {
 //   player2Name = req.body.name;
@@ -65,6 +65,11 @@ Player 1: Enter your name'),
 //   response.send(`Player 2: Enter your name`)
 //  })
 
-// app.listen(PORT, function () {
-//   console.log(`listening on port ${PORT}`)
+// app.get('/compare', (request, response) => {
+//   const result = compare(player1Choice, player2Choice)
+//   response.send(result)
 // })
+
+app.listen(PORT, function () {
+  console.log(`listening on port ${PORT}`)
+})
