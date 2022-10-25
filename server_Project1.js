@@ -57,14 +57,22 @@ app.post('/player1Name', (request, response) => {
 app.post('/player2Name', (request, response) => {
   player2Name = request.body.name
   response.send(
-    `Hello ${player2Name}, Player 1: What is your choice? Rock, Paper, or Scissors?`,
+    `Hello ${player2Name},\n\
+    ${player1Name}: What is your choice? Rock, Paper, or Scissors?`,
   )
 })
 
-//  app.post('/player1Choice', (req, res) => {
-//   player1Choice = req.body.name;
-//   response.send(`Player 2: Enter your name`)
-//  })
+// app.post('/player1Choice', (request, response) => {
+//   player1Choice = request.body.name
+//   response.send(`${player1Name} has made there choice.\n\
+//   ${player2Name} What is your choice? Rock, Paper, or Scissors?`)
+// })
+
+// app.post('/player2Choice', (request, response) => {
+//   player2Choice = request.body.name
+//   response.send(`${player2Name} has made there choice.\n\
+//   Now to find out who is the WINNER!!!....`)
+// })
 
 // app.get('/compare', (request, response) => {
 //   const result = compare(player1Choice, player2Choice)
