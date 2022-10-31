@@ -64,13 +64,13 @@ app.post('/player2Name', (request, response) => {
 
 app.post('/player1Choice', (request, response) => {
   player1Choice = request.body.name
-  response.send(`${player1Name} has made there choice.\n\
+  response.send(`${player1Name} has decided.\n\
   ${player2Name} What is your choice? Rock, Paper, or Scissors?`)
 })
 
 app.post('/player2Choice', (request, response) => {
   player2Choice = request.body.name
-  response.send(`${player2Name} has made there choice.\n\
+  response.send(`${player2Name} has decided.\n\
   Now to find out who is the WINNER!!!....`)
 })
 
