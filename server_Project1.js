@@ -10,8 +10,8 @@ let player1Name
 let player2Name
 let player1Choice
 let player2Choice
-let player1Score
-let player2Score
+let player1Score = 0
+let player2Score = 0
 
 function compare(player1Choice, player2Choice) {
   player1Choice = player1Choice //.toLowerCase()
@@ -62,22 +62,22 @@ app.post('/player2Name', (request, response) => {
   )
 })
 
-// app.post('/player1Choice', (request, response) => {
-//   player1Choice = request.body.name
-//   response.send(`${player1Name} has made there choice.\n\
-//   ${player2Name} What is your choice? Rock, Paper, or Scissors?`)
-// })
+app.post('/player1Choice', (request, response) => {
+  player1Choice = request.body.name
+  response.send(`${player1Name} has made there choice.\n\
+  ${player2Name} What is your choice? Rock, Paper, or Scissors?`)
+})
 
-// app.post('/player2Choice', (request, response) => {
-//   player2Choice = request.body.name
-//   response.send(`${player2Name} has made there choice.\n\
-//   Now to find out who is the WINNER!!!....`)
-// })
+app.post('/player2Choice', (request, response) => {
+  player2Choice = request.body.name
+  response.send(`${player2Name} has made there choice.\n\
+  Now to find out who is the WINNER!!!....`)
+})
 
-// app.get('/compare', (request, response) => {
-//   const result = compare(player1Choice, player2Choice)
-//   response.send(result)
-// })
+app.get('/compare', (request, response) => {
+  const result = compare(player1Choice, player2Choice)
+  response.send(result)
+})
 
 app.listen(PORT, function () {
   console.log(`listening on port ${PORT}`)
