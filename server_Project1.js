@@ -1,5 +1,4 @@
 import express from 'express'
-import rl from 'readline-sync'
 
 const app = express()
 app.use(express.json())
@@ -12,6 +11,7 @@ let player1Choice
 let player2Choice
 let player1Score = 0
 let player2Score = 0
+let winnerName
 
 function compare(player1Choice, player2Choice) {
   player1Choice = player1Choice //.toLowerCase()
@@ -43,8 +43,8 @@ function compare(player1Choice, player2Choice) {
   }
 }
 
-app.get('/welcome', (req, res) => {
-  res.send('Welcome to rock, paper, scissors!\n\
+app.get('/welcome', (request, response) => {
+  response.send('Welcome to rock, paper, scissors!\n\
 Player 1: Enter your name')
 })
 
@@ -81,4 +81,22 @@ app.get('/compare', (request, response) => {
 
 app.listen(PORT, function () {
   console.log(`listening on port ${PORT}`)
+})
+
+app.get('/result', (request, response) => {
+  if (winnerName === 'player1Name') {
+    player1Score = player1Score + 1
+    winnerName = player1Name
+    response.send(
+      `The winner is ${winnerName}\n\nPlayer 1's Score: ${player1Score}\n\nPlayer 2's Score: ${player2Score}`,
+    )
+  } else if (winnerName === 'player2') {
+    player2Score = player2Score + 1
+    winnerName = player2Name
+    response.send(
+      `The winner is ${winnerName}\n\nPlayer 1's Score: ${player1Score}\n\nPlayer 2's Score: ${player2Score}`,
+    )
+  } else {
+    response.send(`Draw, Please play again!`)
+  }
 })
